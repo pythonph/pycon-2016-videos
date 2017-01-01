@@ -63,7 +63,7 @@ def isabel_sieh():
          .crossfadeout(1)),
         title_clip.set_duration(3).crossfadeout(1),
     ])
-    video.write_videofile(os.path.join("output", "02_isabel_sieh.mp4"))
+    video.write_videofile(os.path.join("output", "d1", "02_isabel_sieh.mp4"))
 
 
 def main():
