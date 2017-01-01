@@ -1,8 +1,11 @@
 import os
 
+from moviepy.config import change_settings
 from moviepy.editor import *
 
-FOOTAGES_DIR = "/Volumes/Kulafu/PyCon PH 2016 Videos/footages"
+FOOTAGES_DIR = "E:\\PyCon PH 2016\\footages"
+IMAGEMAGICK_BINARY = "D:\\MarkSteve\\Bin\\ImageMagick-7.0.1-9-portable-Q16-x64\\convert.exe"
+
 SIZE = (1280, 720)
 PIP_BIG = (1120, 630)
 PIP_SMALL = (320, 180)
@@ -21,12 +24,12 @@ def trim_clips(clips):
             return
 
 
-def isabel_sy():
+def isabel_sieh():
     cam_1 = VideoFileClip(
-        os.path.join(FOOTAGES_DIR, "d1", "02_isabel_sy_cam_1.mp4")
+        os.path.join(FOOTAGES_DIR, "d1", "02_isabel_sieh_cam_1.mp4")
     ).resize(SIZE)
     cam_2 = VideoFileClip(
-        os.path.join(FOOTAGES_DIR, "d1", "02_isabel_sy_cam_2.mp4")
+        os.path.join(FOOTAGES_DIR, "d1", "02_isabel_sieh_cam_2.mp4")
     ).resize(SIZE)
     pip = CompositeVideoClip([
         pip_clip.set_duration(None),
@@ -42,13 +45,13 @@ def isabel_sy():
         (131, pip),
         (1131, None),
     ])))
-    section_title = "Isabel Sieh"
-    section_subtitle = "Building a Coding Community"
+    name_txt = "Isabel Sieh"
+    talk_txt = "Building a Coding Community"
     section = CompositeVideoClip([
         section_clip.set_duration(None),
-        TextClip(txt=section_title, color="#d14e4d", font="Arial",
+        TextClip(name_txt, color="#d14e4d", font="Arial",
                  fontsize=60).set_pos((60, 570)),
-        TextClip(txt=section_subtitle, color="#333333", font="Arial",
+        TextClip(talk_txt, color="#333333", font="Arial",
                  fontsize=40).set_pos((60, 630)),
     ])
     video = CompositeVideoClip([
@@ -60,11 +63,12 @@ def isabel_sy():
          .crossfadeout(1)),
         title_clip.set_duration(3).crossfadeout(1),
     ])
-    video.write_videofile(os.path.join("output", "isabel_sy.mp4"))
+    video.write_videofile(os.path.join("output", "isabel_sieh.mp4"))
 
 
 def main():
-    isabel_sy()
+    change_settings({"IMAGEMAGICK_BINARY": IMAGEMAGICK_BINARY})
+    isabel_sieh()
 
 
 if __name__ == "__main__":
